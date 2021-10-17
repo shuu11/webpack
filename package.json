@@ -1,0 +1,92 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shuu11/webpack.git",
+    "branch":"main"
+  },
+  "scripts": {
+    "dev": "npx webpack --config ./webpack.dev.js",
+    "pro": "npx webpack --config ./webpack.prod.js",
+    "format": "prettier --write ./src/**/*.{html,scss,js}",
+    "acp":"npm-run-all -s add commit push",
+
+
+
+
+
+    "command memo":"#########################################################",
+
+    "#1":
+    "command                                        exp                                                           memo",
+    "init":"git init",                              "#1-exp":"git init",                                          "#1-memo":"リポジトリを新規作成",
+    "remote":"git remote add origin",               "#1-exp":"git remote add origin [url]",                       "#1-memo":"リモートリポジトリの追加",
+    "upstream":"git push --set-upstream origin",    "#1-exp":"git push --set-upstream origin [branch name]",      "#1-memo":"プッシュ先を指定",
+    "clone":"git clone",                            "#1-exp":"git clone [url]",                                   "#1-memo":"リポジトリをコピー",
+    "gc":"git gc",                                  "#1-exp":"git gc",                                            "#1-memo":"リポジトリを最適化",
+    "pull":"git pull origin",                       "#1-exp":"git pull origin [branch name]",                     "#1-memo":"リモートリポジトリの変更点をローカルリポジトリにマージ",
+    "push":"git push origin",                       "#1-exp":"git push origin [branch name]",                     "#1-memo":"ローカルリポジトリの変更点をリモートリポジトリにマージ",
+    "add":"git add .",                              "#1-exp":"git add .",                                         "#1-memo":"コミット対象のファイルを登録",
+    "commit":"git commit",                          "#1-exp":"git commit [message]",                              "#1-memo":"変更されたファイルをコミット",
+    "reset":"git reset",                            "#1-exp":"git reset",                                         "#1-memo":"直前のコミットを取り消し",
+    "revert":"git revert",                          "#1-exp":"git revert",                                        "#1-memo":"特定のコミットを取り消し",
+    "tag":"git tag",                                "#1-exp":"git tag",                                           "#1-memo":"コミットにタグをつける",
+    "log":"git log --oneline",                      "#1-exp":"git log --oneline",                                 "#1-memo":"コミット履歴を表示",
+    "status":"git status",                          "#1-exp":"git status",                                        "#1-memo":"作業ツリー内の差分ファイルを表示",
+    "mv":"git mv",                                  "#1-exp":"git mv",                                            "#1-memo":"ファイルを移動/ファイル名を変更",
+    "stash":"git stash",                            "#1-exp":"git stash",                                         "#1-memo":"作業ツリーの状態を一時的に保存",
+    "branch":"git branch",                          "#1-exp":"git branch",                                        "#1-memo":"ブランチの一覧表示",
+    "branch":"git branch",                          "#1-exp":"git branch [branch name]",                          "#1-memo":"ブランチの作成",
+    "checkout":"git checkout",                      "#1-exp":"git checkout [branch name]",                        "#1-memo":"処理対象ブランチの切り替え",
+    "merge":"git merge",                            "#1-exp":"git merge [branch name]",                           "#1-memo":"別のブランチから変更点をマージ",
+    "rebase":"git rebase",                          "#1-exp":"git rebase",                                        "#1-memo":"派生元ブランチに変更点をマージ"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "autoprefixer": "^10.3.7",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.18.3",
+    "css-loader": "^6.4.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.4.0",
+    "image-webpack-loader": "^8.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "jquery": "^3.6.0",
+    "mini-css-extract-plugin": "^2.4.2",
+    "node-sass": "^6.0.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "postcss-loader": "^6.2.0",
+    "prettier": "^2.4.1",
+    "regenerator-runtime": "^0.13.9",
+    "sass-loader": "^12.2.0",
+    "terser-webpack-plugin": "^5.2.4",
+    "velocity-animate": "^1.5.2",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 11",
+    "Android >= 4"
+  ]
+}
