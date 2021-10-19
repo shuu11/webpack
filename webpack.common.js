@@ -55,7 +55,15 @@ module.exports = ({ outputFile, assetFile }) => ({
               },
             },
           },
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+              },
+            },
+          },
         ],
       },
       {
