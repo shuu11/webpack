@@ -1,10 +1,10 @@
 "use strict";
 (self["webpackChunktest"] = self["webpackChunktest"] || []).push([["vendor-modules"],{
 
-/***/ "./src/js/modules/greet.js":
-/*!*********************************!*\
-  !*** ./src/js/modules/greet.js ***!
-  \*********************************/
+/***/ "./src/js/modules/_greet.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/_greet.js ***!
+  \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);

@@ -33,8 +33,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var velocity_animate__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! velocity-animate */ "./node_modules/velocity-animate/velocity.js");
 /* harmony import */ var velocity_animate__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(velocity_animate__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _modules_math__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/math */ "./src/js/modules/math.js");
-/* harmony import */ var _modules_greet__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/greet */ "./src/js/modules/greet.js");
+/* harmony import */ var _modules_math__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/_math */ "./src/js/modules/_math.js");
+/* harmony import */ var _modules_greet__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/_greet */ "./src/js/modules/_greet.js");
+/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../scss/style.scss */ "./src/scss/style.scss");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -56,6 +57,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -115,10 +117,10 @@ delayHello();
 
 /***/ }),
 
-/***/ "./src/js/modules/math.js":
-/*!********************************!*\
-  !*** ./src/js/modules/math.js ***!
-  \********************************/
+/***/ "./src/js/modules/_math.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/_math.js ***!
+  \*********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -319,8 +321,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["vendor","vendor-modules"], function() { return __webpack_require__("./src/js/app.js"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor","vendor-modules"], function() { return __webpack_require__("./src/scss/style.scss"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendor","vendor-modules"], function() { return __webpack_require__("./src/js/app.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

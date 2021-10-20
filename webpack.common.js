@@ -4,15 +4,33 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
+const glob = require('glob');
+
+const js = {
+  src: './src/js/',
+  glob: './src/js/**/*.js',
+  ignore: './src/js/**/_*.js',
+};
+
+const entries = glob.sync(js.glob, { ignore: js.ignore }).map(function (file) {
+  const key = file.replace(js.src, '').replace(/\.js$/, '');
+
+  return [key, file];
+});
+
+const entryObj = Object.fromEntries(entries);
+
+
+const html = {
+
+};
+
 
 module.exports = ({ outputFile, assetFile }) => ({
-  entry: {
-    app: ['./src/js/app.js', './src/scss/style.scss'],
-    another: './src/js/another.js',
-  },
+  entry: entryObj,
 
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'),
     filename: `./js/${outputFile}.js`,
     chunkFilename: `./js/${outputFile}.js`,
   },
