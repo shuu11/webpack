@@ -13,7 +13,7 @@ module.exports = ({ outputFile, assetFile }) => ({
     {
       ignore: path.resolve(__dirname, './src/js/**/_*.js'),
     }
-  ),
+  )(),
 
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -99,6 +99,7 @@ module.exports = ({ outputFile, assetFile }) => ({
       inject: 'body',
       chunks: ['another'],
     }),
+    new WebpackWatchedGlobEntries(),
     new MiniCssExtractPlugin({
       filename: `./css/${outputFile}.css`,
     }),
@@ -119,3 +120,4 @@ module.exports = ({ outputFile, assetFile }) => ({
     }),
   ],
 });
+

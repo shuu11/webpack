@@ -5,6 +5,6 @@ const assetFile = '[name]';
 
 module.exports = () => merge(commonConfig({outputFile,assetFile}) , {
   mode:"development",
-  watch:true,
+  // watch:true,
   devtool: 'source-map',
 });
