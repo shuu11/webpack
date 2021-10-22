@@ -5,32 +5,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const glob = require('glob');
-
-const js = {
-  src: './src/js/',
-  glob: './src/js/**/*.js',
-  ignore: './src/js/**/_*.js',
-};
-
-const entries = glob.sync(js.glob, { ignore: js.ignore }).map(function (file) {
-  const key = file.replace(js.src, '').replace(/\.js$/, '');
-
-  return [key, file];
-});
-
-const entryObj = Object.fromEntries(entries);
-
-
-const html = {
-
-};
-
+const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
 
 module.exports = ({ outputFile, assetFile }) => ({
-  entry: entryObj,
+  entry: WebpackWatchedGlobEntries.getEntries(
+    [path.resolve(__dirname, './src/js/**/*.js')],
+    {
+      ignore: path.resolve(__dirname, './src/js/**/_*.js'),
+    }
+  ),
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: `./js/${outputFile}.js`,
     chunkFilename: `./js/${outputFile}.js`,
   },
@@ -103,13 +89,13 @@ module.exports = ({ outputFile, assetFile }) => ({
       cleanOnceBeforeBuildPatterns: ['**/*'],
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(__dirname, './src/index.html'),
       inject: 'body',
       chunks: ['app'],
     }),
     new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/another.html'),
       filename: 'another.html',
-      template: './src/another.html',
       inject: 'body',
       chunks: ['another'],
     }),
