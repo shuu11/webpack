@@ -4,7 +4,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const buildHtmlWebpackPlugins = require('./config/webpack/utils/buildHtmlWebpackPlugins.js');
+
+const bs = {
+  startPath: './dist/index.html',
+};
 
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/js/**/*.js')],
@@ -37,6 +42,13 @@ module.exports = ({ outputFile, assetFile }) => ({
           minChunks: 2,
         },
       },
+    },
+  },
+
+  devServer: {
+    open: true,
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
     },
   },
 
@@ -108,6 +120,14 @@ module.exports = ({ outputFile, assetFile }) => ({
         }),
       ],
     }),
+    new BrowserSyncPlugin({
+      server: {
+        baseDir: './',
+      },
+      startPath: bs.startPath,
+      port: 3000,
+      notify: false,
+      open: 'external',
+    }),
   ],
 });
-
