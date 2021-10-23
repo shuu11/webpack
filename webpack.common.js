@@ -1,19 +1,20 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-const glob = require('glob');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
+const buildHtmlWebpackPlugins = require('./config/webpack/utils/buildHtmlWebpackPlugins.js');
+
+const entries = WebpackWatchedGlobEntries.getEntries(
+  [path.resolve(__dirname, './src/js/**/*.js')],
+  {
+    ignore: path.resolve(__dirname, './src/js/**/_*.js'),
+  }
+)();
 
 module.exports = ({ outputFile, assetFile }) => ({
-  entry: WebpackWatchedGlobEntries.getEntries(
-    [path.resolve(__dirname, './src/js/**/*.js')],
-    {
-      ignore: path.resolve(__dirname, './src/js/**/_*.js'),
-    }
-  )(),
+  entry: entries,
 
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -88,18 +89,7 @@ module.exports = ({ outputFile, assetFile }) => ({
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*'],
     }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './src/index.html'),
-      inject: 'body',
-      chunks: ['app'],
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './src/another.html'),
-      filename: 'another.html',
-      inject: 'body',
-      chunks: ['another'],
-    }),
-    new WebpackWatchedGlobEntries(),
+    ...buildHtmlWebpackPlugins(entries, './src'),
     new MiniCssExtractPlugin({
       filename: `./css/${outputFile}.css`,
     }),
