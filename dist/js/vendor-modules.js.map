@@ -1,1 +1,0 @@
-{"version":3,"file":"./js/vendor-modules.js","mappings":";;;;;;;;;;;;;AAAO,SAASA,KAAT,CAAeC,IAAf,EAAqB;AAC1B,0BAAiBA,IAAjB;AACD","sources":["webpack://test/./src/js/modules/_greet.js"],"sourcesContent":["export function greet(name) {\n  return `Hello, ${name}!!`;\n}\n"],"names":["greet","name"],"sourceRoot":""}
