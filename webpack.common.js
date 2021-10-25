@@ -45,6 +45,13 @@ module.exports = ({ outputFile, assetFile }) => ({
     },
   },
 
+  resolve: {
+    alias: {
+      '@scss': path.resolve(__dirname, './src/scss/'),
+      '@image': path.resolve(__dirname, './src/image/'),
+    },
+  },
+
   devServer: {
     open: true,
     static: {
@@ -57,7 +64,10 @@ module.exports = ({ outputFile, assetFile }) => ({
       {
         test: /\.js$/i,
         exclude: /node_modules/i,
-        loader: 'babel-loader',
+        use: [
+          'babel-loader',
+          // 'eslint-loader',
+        ],
       },
       {
         test: /\.scss$/i,
