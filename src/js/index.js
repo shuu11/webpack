@@ -2,7 +2,7 @@ import $ from 'jquery';
 import velocity from 'velocity-animate';
 import { add } from './modules/_math.js';
 import { greet } from './modules/_greet.js';
-import sass from '@scss/style.scss';
+import '@scss/style.scss';
 
 console.log('app');
 

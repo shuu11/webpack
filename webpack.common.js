@@ -5,6 +5,7 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const buildHtmlWebpackPlugins = require('./config/webpack/utils/buildHtmlWebpackPlugins.js');
 
 const bs = {
@@ -27,31 +28,6 @@ module.exports = ({ outputFile, assetFile }) => ({
     chunkFilename: `./js/${outputFile}.js`,
   },
 
-  optimization: {
-    splitChunks: {
-      chunks: 'initial',
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/i,
-          name: 'vendor',
-        },
-        vendorsModules: {
-          test: /src[\\/]js[\\/]modules/i,
-          name: 'vendor-modules',
-          minSize: 0,
-          minChunks: 2,
-        },
-      },
-    },
-  },
-
-  resolve: {
-    alias: {
-      '@scss': path.resolve(__dirname, './src/scss/'),
-      '@image': path.resolve(__dirname, './src/image/'),
-    },
-  },
-
   devServer: {
     open: true,
     static: {
@@ -62,12 +38,9 @@ module.exports = ({ outputFile, assetFile }) => ({
   module: {
     rules: [
       {
-        test: /\.js$/i,
-        exclude: /node_modules/i,
-        use: [
-          'babel-loader',
-          // 'eslint-loader',
-        ],
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
       },
       {
         test: /\.scss$/i,
@@ -139,5 +112,34 @@ module.exports = ({ outputFile, assetFile }) => ({
       notify: false,
       open: 'external',
     }),
+    new ESLintPlugin({
+      fix: true,
+    })
   ],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'initial',
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/i,
+          name: 'vendor',
+        },
+        vendorsModules: {
+          test: /src[\\/]js[\\/]modules/i,
+          name: 'vendor-modules',
+          minSize: 0,
+          minChunks: 2,
+        },
+      },
+    },
+  },
+
+  resolve: {
+    alias: {
+      '@scss': path.resolve(__dirname, './src/scss/'),
+      '@image': path.resolve(__dirname, './src/image/'),
+    },
+  },
+
 });
