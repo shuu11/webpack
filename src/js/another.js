@@ -1,5 +1,3 @@
-const $ = require('jquery');
-// const velocity = require('velocity-animate');
 const { greet } = require('./modules/_greet.js');
 
 $('body')

@@ -1,8 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-const ImageminMozjpeg = require('imagemin-mozjpeg');
+const { ProvidePlugin } = require('webpack');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -69,7 +68,7 @@ module.exports = ({ outputFile, assetFile }) => ({
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         generator: {
-          filename: `./image/${assetFile}[ext]`,
+          filename: `./image/[name].${assetFile}[ext]`,
         },
         type: 'asset/resource',
       },
@@ -88,21 +87,12 @@ module.exports = ({ outputFile, assetFile }) => ({
     new MiniCssExtractPlugin({
       filename: `./css/${outputFile}.css`,
     }),
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      pngquant: {
-        quality: [60 - 70], // 画質
-        speed: 1, // スピード
-      },
-      gifsicle: {
-        optimizationLevel: 3, // 圧縮率
-      },
-      plugins: [
-        ImageminMozjpeg({
-          quality: 65, // 画質
-        }),
-      ],
+    new ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      velocity:'velocity-animate',
     }),
+
     new BrowserSyncPlugin({
       server: {
         baseDir: './',
@@ -114,7 +104,7 @@ module.exports = ({ outputFile, assetFile }) => ({
     }),
     new ESLintPlugin({
       fix: true,
-    })
+    }),
   ],
 
   optimization: {
@@ -141,5 +131,4 @@ module.exports = ({ outputFile, assetFile }) => ({
       '@image': path.resolve(__dirname, './src/image/'),
     },
   },
-
 });

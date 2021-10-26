@@ -5,6 +5,11 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
   },
+  globals: {
+    jQuery: 'readonly',
+    $: 'readonly',
+    velocity:'readonly',
+  },
   extends: ['eslint:recommended', 'prettier'],
   plugins: ['prettier'],
   rules: {
