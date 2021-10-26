@@ -1,6 +1,6 @@
-import $ from 'jquery';
-import velocity from 'velocity-animate';
-import { greet } from './modules/_greet.js';
+const $ = require('jquery');
+// const velocity = require('velocity-animate');
+const { greet } = require('./modules/_greet.js');
 
 $('body')
   .css('color', 'red')
