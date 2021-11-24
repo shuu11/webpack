@@ -6,8 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
  * @param {object} entries { foo: "/entries/foo.ts" }のようなentryを表すオブジェクト
  * @param {string} templateRootPath entryのjsを読み込むtemplateファイル(html)のRootパス
  */
-module.exports = function buildHtmlWebpackPlugins(entries, templateRootPath) {
-
+module.exports = (entries, templateRootPath) => {
   return Object.keys(entries).map(
     (entryName) =>
       new HtmlWebpackPlugin({
