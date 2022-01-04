@@ -1,19 +1,18 @@
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  env: { browser: true, node: true, es6: true },
-  parserOptions: {
-    sourceType: 'module',
-  },
-  globals: {
-    jQuery: 'readonly',
-    $: 'readonly',
-    velocity:'readonly',
-  },
-  extends: ['eslint:recommended', 'prettier'],
-  plugins: ['prettier'],
-  rules: {
-    semi: ['error', 'always'],
-    'prettier/prettier': 'error',
-  },
+	root: true,
+	parser: '@babel/eslint-parser',
+	env: {
+		browser: true,
+		node: true,
+	},
+	parserOptions: {
+		sourceType: 'module',
+	},
+	globals: {
+		jQuery: 'readonly',
+		$: 'readonly',
+		velocity: 'readonly',
+	},
+	extends: ['eslint:recommended', 'prettier'],
+	rules: {},
 };

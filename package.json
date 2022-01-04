@@ -69,9 +69,7 @@
     "webpack-merge": "^5.8.0",
     "webpack-watched-glob-entries-plugin": "^2.2.2"
   },
-  "prettier": {
-    "singleQuote": true
-  },
+
   "browserslist": [
     "last 2 versions",
     "ie >= 11",
