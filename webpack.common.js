@@ -1,19 +1,27 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ProvidePlugin } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const buildHtmlWebpackPlugins = require('./config/webpack/utils/buildHtmlWebpackPlugins.js');
 
-const entries = WebpackWatchedGlobEntries.getEntries(
-	[path.resolve(__dirname, './src/js/**/*.js')],
-	{
-		ignore: path.resolve(__dirname, './src/js/**/_*.js'),
-	}
-)();
+const entries = WebpackWatchedGlobEntries.getEntries([path.resolve(__dirname, './src/js/**/*.js')], {
+	ignore: path.resolve(__dirname, './src/js/**/_*.js'),
+})();
 
-module.exports = ({ outputFile, assetFile }) => ({
+const htmlGlobEntries = (entries, srcPath) => {
+	return Object.keys(entries).map(
+		(key) =>
+			new HtmlWebpackPlugin({
+				inject: 'body',
+				filename: `${key}.html`,
+				template: `${srcPath}/${key}.html`,
+				chunks: [key],
+			})
+	);
+};
+
+module.exports = (outputFile, assetFile) => ({
 	entry: entries,
 
 	output: {
@@ -63,23 +71,6 @@ module.exports = ({ outputFile, assetFile }) => ({
 		],
 	},
 
-	plugins: [
-		new CleanWebpackPlugin(),
-		...buildHtmlWebpackPlugins(entries, './src'),
-		new MiniCssExtractPlugin({
-			filename: `./css/${outputFile}.css`,
-		}),
-		new ProvidePlugin({
-			jQuery: 'jquery',
-			$: 'jquery',
-			velocity: 'velocity-animate',
-		}),
-
-		new ESLintPlugin({
-			fix: true,
-		}),
-	],
-
 	optimization: {
 		splitChunks: {
 			chunks: 'initial',
@@ -98,9 +89,25 @@ module.exports = ({ outputFile, assetFile }) => ({
 		},
 	},
 
+
+	plugins: [
+		new CleanWebpackPlugin(),
+		new WebpackWatchedGlobEntries(),
+
+		...htmlGlobEntries(entries, './src'),
+		new MiniCssExtractPlugin({
+			filename: `./css/${outputFile}.css`,
+		}),
+		new ProvidePlugin({
+			jQuery: 'jquery',
+			$: 'jquery',
+		}),
+	],
+
 	resolve: {
 		extensions: ['.js', '.json'],
 		alias: {
+			'@js': path.resolve(__dirname, './src/js/'),
 			'@scss': path.resolve(__dirname, './src/scss/'),
 			'@image': path.resolve(__dirname, './src/image/'),
 		},

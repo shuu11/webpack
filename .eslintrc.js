@@ -11,8 +11,6 @@ module.exports = {
 	globals: {
 		jQuery: 'readonly',
 		$: 'readonly',
-		velocity: 'readonly',
 	},
 	extends: ['eslint:recommended', 'prettier'],
-	rules: {},
-};
+}

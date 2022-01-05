@@ -1,28 +1,20 @@
-const { add } = require('./modules/_math.js');
-const { greet } = require('./modules/_greet.js');
+import { test } from './module/_sub';
 import '@scss/style.scss';
 
-console.log('app');
+const text = () => {
+	$('#myText').text();
+	$('#myText').empty().show();
+};
 
-const result = add(1, 2);
+const init = async () => {
+	console.log('hello from app.js');
+	await asyncFn();
+};
 
-$('body')
-  .append(result)
-  .append(`<p>${greet('App')}</p>`);
-velocity($('h1'), 'fadeIn', { duration: 2000, loop: true });
-
-// console.log(a);
-
-const z = { z: 3 };
-console.log({ x: 1, y: 2, ...z }); // => { x: 1, y: 2, z: 3 }
-
-const promise = new Promise((resolve) => {
-  setTimeout(() => resolve('hello!'), 3000);
-});
-
-async function delayHello() {
-  const value = await promise;
-  console.log(value);
+async function asyncFn() {
+	console.log([1, 2, 3].includes(0));
 }
 
-delayHello();
+init();
+test();
+text();
